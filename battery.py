@@ -9,6 +9,16 @@ class Battery:
     specific_energy: float
     energy_density: float
 
+    def mass(self, energy):
+        return energy / self.specific_energy
+
+    def volume(self, energy):
+        return energy / self.energy_density
+
+    def capacity(self, energy):
+        return (energy / self.cell_voltage).rescale(pq.mA * pq.hr)
+
+
 LithiumNMC = Battery(
      name="Lithium NMC",
      cell_voltage=3.6 * pq.V,                # [3.60 - 3.85] V
