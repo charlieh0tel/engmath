@@ -12,9 +12,9 @@ import quantities as pq
 from . import wearable
 
 
-def test_touch_surface_flux():
+def test_touch_surface_passive_flux():
     ambient_temp = 25. * pq.C
-    flux = wearable.TouchSurfaceFlux(ambient_temp)
+    flux = wearable.TouchSurfacePassiveFlux(ambient_temp)
     expected_flux = 0.2 * pq.mW / (pq.mm * pq.mm)
     print(f"{flux} {expected_flux}")
     assert numpy.isclose(flux, expected_flux,
