@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 #
 
+"""Wearables."""
+
 import quantities as pq
 
 from . import heat_transfer
@@ -20,6 +22,6 @@ def TouchSurfacePassiveFlux(ambient_temp):
     """
     dT = TOUCH_CONTINUOUS_TEMP_LIMIT - ambient_temp
     if dT < 0.:
-        raise Error("Ambient temperature is above the touch limit.")
+        raise ValueError("Ambient temperature is above the touch limit.")
     # Q = h.A.dT => Q/A = h.dT
     return (heat_transfer.H_PASSIVE * dT).rescale(pq.mW / (pq.mm * pq.mm))

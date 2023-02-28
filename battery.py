@@ -4,6 +4,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 #
 
+"""Batteries."""
+
+
 import dataclasses
 import quantities as pq
 

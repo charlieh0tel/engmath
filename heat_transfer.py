@@ -4,6 +4,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 #
 
+"""Heat transfer."""
+
 import quantities as pq
 
 _m2 = pq.m * pq.m
