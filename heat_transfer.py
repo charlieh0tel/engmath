@@ -1,3 +1,9 @@
+#
+# Copyright (c) 2023, Christopher Hoover
+#
+# SPDX-License-Identifier: BSD-3-Clause
+#
+
 import quantities as pq
 
 _m2 = pq.m * pq.m
