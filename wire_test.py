@@ -15,8 +15,11 @@ import pytest
 from . import wire
 
 
-def _checkSolidDiameter(awg, expected_dia, atol=1e-3 * pq.inch):
+def _checkSolidDiameter(awg, expected_dia, atol=0.1e-3 * pq.inch):
     return np.isclose(wire.SolidAWGDiameter(awg), expected_dia, atol=atol)
+
+
+# Diameters from http://hyperphysics.phy-astr.gsu.edu/hbase/Tables/wirega.html
 
 
 def test_wire_awg_0000():
@@ -28,11 +31,11 @@ def test_wire_awg_neg3():
 
 
 def test_wire_awg_000():
-    assert _checkSolidDiameter("000", 0.4096 * pq.inch)
+    assert _checkSolidDiameter("000", 0.40965 * pq.inch)
 
 
 def test_wire_awg_neg2():
-    assert _checkSolidDiameter(-2, 0.4096 * pq.inch)
+    assert _checkSolidDiameter(-2, 0.40965 * pq.inch)
 
 
 def test_wire_awg_00():
@@ -44,15 +47,15 @@ def test_wire_awg_neg1():
 
 
 def test_wire_awg_0():
-    assert _checkSolidDiameter(0, 0.3249 * pq.inch)
+    assert _checkSolidDiameter(0, 0.32485 * pq.inch)
 
 
 def test_wire_awg_21():
-    assert _checkSolidDiameter(21, 0.0285 * pq.inch)
+    assert _checkSolidDiameter(21, 0.02846 * pq.inch)
 
 
 def test_wire_awg_40():
-    assert _checkSolidDiameter(40, 0.0031 * pq.inch)
+    assert _checkSolidDiameter(40, 0.00314 * pq.inch)
 
 
 def test_wire_awg_neg4():
