@@ -15,7 +15,10 @@ import pytest
 from . import wire
 from .test_utils import isclose
 
-# Diameters from http://hyperphysics.phy-astr.gsu.edu/hbase/Tables/wirega.html
+# References:
+#
+# https://nvlpubs.nist.gov/nistpubs/Legacy/hb/nbshandbook100.pdf
+# http://hyperphysics.phy-astr.gsu.edu/hbase/Tables/wirega.html
 
 
 def _checkSolidWireDiameter(awg, expected_value, atol=0.1e-3 * pq.inch):
@@ -23,8 +26,9 @@ def _checkSolidWireDiameter(awg, expected_value, atol=0.1e-3 * pq.inch):
     return isclose(diameter, expected_value, atol=atol)
 
 
+# AWG 0000 (4/0) is by definition.
 def testSolidWireDiameter_0000():
-    assert _checkSolidWireDiameter("0000", 0.46 * pq.inch)
+    assert _checkSolidWireDiameter("0000", 0.4600 * pq.inch)
 
 
 def testSolidWireDiameter_4slash0():
@@ -74,6 +78,9 @@ def testSolidWireDiameter_0():
 def testSolidWireDiameter_21():
     assert _checkSolidWireDiameter(21, 0.02846 * pq.inch)
 
+# AWG 36 is by definition.
+def testSolidWireDiameter_36():
+    assert _checkSolidWireDiameter(36, 0.0050 * pq.inch)
 
 def testSolidWireDiameter_40():
     assert _checkSolidWireDiameter(40, 0.00314 * pq.inch)
@@ -82,9 +89,6 @@ def testSolidWireDiameter_40():
 def testSolidWireDiameter_xxx():
     with pytest.raises(ValueError):
         wire.SolidWireDiameter("xxx")
-
-
-# Areas from http://hyperphysics.phy-astr.gsu.edu/hbase/Tables/wirega.html
 
 
 def _checkSolidWireArea(awg, expected_value, atol=4.0 * pq.cmil):
