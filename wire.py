@@ -9,8 +9,10 @@
 import math
 import quantities as pq
 
+from . import resistivity
 
-def SolidAWGDiameter(awg):
+
+def SolidWireDiameter(awg):
     """The diameter of a solid wire of the specified AWG."""
     if awg == "0000":
         awg = -3
@@ -29,7 +31,13 @@ def SolidAWGDiameter(awg):
     return 0.005 * 92.0 ** ((36.0 - awg) / 39.0) * pq.inch
 
 
-def SolidAWGCrossSectionalArea(awg):
+def SolidWireCrossSectionalArea(awg):
     """The cross-sectional area of a solid wire of the specified AWG."""
-    radius = SolidAWGDiameter(awg) / 2.0
+    radius = SolidWireDiameter(awg) / 2.0
     return math.pi * radius ** 2
+
+
+def SolidWireResistancePerUnitLength(awg, p=resistivity.p_Cu):
+    """Returns the resistance per unit length for the specified AWG and resistivity."""
+    area = SolidWireCrossSectionalArea(awg)
+    return (p / area).rescale(pq.ohm / pq.m)
