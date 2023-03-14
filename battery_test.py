@@ -7,22 +7,18 @@
 
 # pylint: disable=missing-function-docstring
 
-import numpy as np
 import quantities as pq
 import pytest
 
 from . import battery
+from .test_utils import isclose
 
 
 def test_single_cell_battery():
     chemistry = battery.LithiumNMC
     batteria = battery.Battery(cell_chemistry=chemistry, total_energy=10e3 * pq.J)
-    assert np.isclose(
-        batteria.nominal_voltage, chemistry.cell_voltage, atol=1e-3 * pq.V
-    )
-    assert np.isclose(
-        batteria.capacity, 771.0 * pq.mA * pq.hr, atol=1.0 * pq.mA * pq.hr
-    )
+    assert isclose(batteria.nominal_voltage, chemistry.cell_voltage, atol=1e-3 * pq.V)
+    assert isclose(batteria.capacity, 771.0 * pq.mA * pq.hr, atol=1.0 * pq.mA * pq.hr)
 
 
 def test_fail_multi_cell_no_confg_battery():
@@ -31,7 +27,7 @@ def test_fail_multi_cell_no_confg_battery():
         cell_chemistry=chemistry, total_energy=10e3 * pq.J, n_cells=2
     )
     with pytest.raises(ValueError):
-        assert np.isclose(
+        assert isclose(
             batteria.nominal_voltage, chemistry.cell_voltage, atol=1e-3 * pq.V
         )
 
@@ -42,9 +38,7 @@ def test_series_battery():
     batteria = battery.SeriesBattery(
         cell_chemistry=chemistry, total_energy=10e3 * pq.J, n_cells=n_cells
     )
-    assert np.isclose(
+    assert isclose(
         batteria.nominal_voltage, n_cells * chemistry.cell_voltage, atol=1e-3 * pq.V
     )
-    assert np.isclose(
-        batteria.capacity, 385.0 * pq.mA * pq.hr, atol=1.0 * pq.mA * pq.hr
-    )
+    assert isclose(batteria.capacity, 385.0 * pq.mA * pq.hr, atol=1.0 * pq.mA * pq.hr)
