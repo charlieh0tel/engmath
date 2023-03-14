@@ -68,20 +68,20 @@ class SeriesBattery(Battery):
 LithiumNMC = CellChemistry(
     name="Lithium NMC",
     cell_voltage=3.6 * pq.V,
-    specific_energy=0.74 * pq.J / pq.kg,
-    energy_density=2.1 * pq.J / pq.L,
+    specific_energy=0.74e6 * pq.J / pq.kg,
+    energy_density=2.1e6 * pq.J / pq.L,
 )
 
 LithiumFePO4 = CellChemistry(
     name="Lithium FePO4",
     cell_voltage=3.2 * pq.V,
-    specific_energy=0.32 * pq.J / pq.kg,  # as high as 0.58
-    energy_density=1.20 * pq.J / pq.L,
+    specific_energy=0.32e6 * pq.J / pq.kg,  # as high as 0.58
+    energy_density=1.20e6 * pq.J / pq.L,
 )
 
 LeadAcid = CellChemistry(
     name="Lead Acid",
     cell_voltage=2.1 * pq.V,
-    specific_energy=0.12 * pq.J / pq.kg,
-    energy_density=0.23 * pq.J / pq.L,
+    specific_energy=0.12e6 * pq.J / pq.kg,
+    energy_density=0.23e6 * pq.J / pq.L,
 )

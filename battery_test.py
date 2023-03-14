@@ -23,15 +23,15 @@ def test_single_cell_battery():
     )
 
 
-@pytest.mark.xfail(raises=ValueError)
 def test_fail_multi_cell_no_confg_battery():
     chemistry = battery.LithiumNMC
     batteria = battery.Battery(
         cell_chemistry=chemistry, total_energy=10e3 * pq.J, n_cells=2
     )
-    assert np.isclose(
-        batteria.nominal_voltage, chemistry.cell_voltage, atol=1e-3 * pq.V
-    )
+    with pytest.raises(ValueError):
+        assert np.isclose(
+            batteria.nominal_voltage, chemistry.cell_voltage, atol=1e-3 * pq.V
+        )
 
 
 def test_series_battery():

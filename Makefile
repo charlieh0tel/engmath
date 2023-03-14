@@ -5,7 +5,7 @@ PYLINT=pylint
 all:
 
 test:
-	$(PYTEST) --showlocals
+	$(PYTEST) --showlocals -rA --cache-clear
 
 lint:
 	$(PYLINT) --reports=n --persistent=n --score=n *.py
