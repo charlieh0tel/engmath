@@ -5,6 +5,8 @@
 
 """Tests for battery.py"""
 
+# pylint: disable=missing-function-docstring
+
 import numpy as np
 import quantities as pq
 import pytest
