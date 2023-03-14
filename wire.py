@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 #
 
-"""Wire."""
+"""Wire specified by AWG."""
 
 import math
 import quantities as pq
@@ -14,18 +14,18 @@ from . import resistivity
 
 def SolidWireDiameter(awg):
     """The diameter of a solid wire of the specified AWG."""
-    if awg == "0000":
+    if awg == "0000" or awg == "4/0":
         awg = -3
-    elif awg == "000":
+    elif awg == "000" or awg == "3/0":
         awg = -2
-    elif awg == "00":
+    elif awg == "00" or awg == "2/0":
         awg = -1
+    elif awg == "0" or awg == "1/0":
+        awg = 0
     elif isinstance(awg, int):
         awg = int(awg)
     else:
-        raise ValueError("Expecting awg [-3,40] or '00' or '000' or '0000'")
-    if awg < -3 or awg > 40:
-        raise ValueError("Expecting awg [-3,40] or '00' or '000' or '0000'")
+        raise ValueError("Invalid AWG gauge.")
     #
     # https://en.wikipedia.org/wiki/American_wire_gauge
     return 0.005 * 92.0 ** ((36.0 - awg) / 39.0) * pq.inch

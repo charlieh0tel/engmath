@@ -27,12 +27,20 @@ def testSolidWireDiameter_0000():
     assert _checkSolidWireDiameter("0000", 0.46 * pq.inch)
 
 
+def testSolidWireDiameter_4slash0():
+    assert _checkSolidWireDiameter("4/0", 0.46 * pq.inch)
+
+
 def testSolidWireDiameter_neg3():
     assert _checkSolidWireDiameter(-3, 0.46 * pq.inch)
 
 
 def testSolidWireDiameter_000():
     assert _checkSolidWireDiameter("000", 0.40965 * pq.inch)
+
+
+def testSolidWireDiameter_3slash0():
+    assert _checkSolidWireDiameter("3/0", 0.40965 * pq.inch)
 
 
 def testSolidWireDiameter_neg2():
@@ -43,8 +51,20 @@ def testSolidWireDiameter_00():
     assert _checkSolidWireDiameter("00", 0.3648 * pq.inch)
 
 
+def testSolidWireDiameter_2slash0():
+    assert _checkSolidWireDiameter("2/0", 0.3648 * pq.inch)
+
+
 def testSolidWireDiameter_neg1():
     assert _checkSolidWireDiameter(-1, 0.3648 * pq.inch)
+
+
+def testSolidWireDiameter_str0():
+    assert _checkSolidWireDiameter("0", 0.32485 * pq.inch)
+
+
+def testSolidWireDiameter_1slash0():
+    assert _checkSolidWireDiameter("1/0", 0.32485 * pq.inch)
 
 
 def testSolidWireDiameter_0():
@@ -57,16 +77,6 @@ def testSolidWireDiameter_21():
 
 def testSolidWireDiameter_40():
     assert _checkSolidWireDiameter(40, 0.00314 * pq.inch)
-
-
-def testSolidWireDiameter_neg4():
-    with pytest.raises(ValueError):
-        wire.SolidWireDiameter(-4)
-
-
-def testSolidWireDiameter_41():
-    with pytest.raises(ValueError):
-        wire.SolidWireDiameter(41)
 
 
 def testSolidWireDiameter_xxx():
