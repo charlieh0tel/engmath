@@ -23,7 +23,10 @@ def AWGSpecificationToNumber(awg):
         return -1
     if awg == "0" or awg == "1/0":
         return 0
-    return int(awg)
+    try:
+        return int(awg)
+    except ValueError:
+        raise ValueError(f"{awg} is not a valid AWG specification.")
 
 
 def CanonicalizeAWG(awg):
