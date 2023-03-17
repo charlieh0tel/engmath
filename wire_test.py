@@ -17,10 +17,47 @@ from .test_utils import isclose
 
 # References:
 #
+# https://en.wikipedia.org/wiki/American_wire_gauge
 # https://nvlpubs.nist.gov/nistpubs/Legacy/hb/nbshandbook100.pdf
 # http://hyperphysics.phy-astr.gsu.edu/hbase/Tables/wirega.html
 
 
+def testAWGInts():
+    for awg in range(0, 40 + 1):
+        assert wire.CanonicalizeAWG(awg) == awg
+        assert wire.AWGSpecificationToNumber(awg) == awg
+        assert wire.AWGSpecificationToNumber(str(awg)) == awg
+
+
+def testAWGOneZero():
+    for awg in [0, "0", "1/0"]:
+        assert wire.AWGSpecificationToNumber(awg) == 0
+        assert wire.CanonicalizeAWG(awg) == 0
+
+
+def testAWGTwoZeroes():
+    for awg in [-1, "00", "2/0"]:
+        assert wire.AWGSpecificationToNumber(awg) == -1
+        assert wire.CanonicalizeAWG(awg) == "2/0"
+
+
+def testAWGThreeZeroes():
+    for awg in [-2, "000", "3/0"]:
+        assert wire.AWGSpecificationToNumber(awg) == -2
+        assert wire.CanonicalizeAWG(awg) == "3/0"
+
+
+def testAWGFourZeroes():
+    for awg in [-3, "0000", "4/0"]:
+        assert wire.AWGSpecificationToNumber(awg) == -3
+        assert wire.CanonicalizeAWG(awg) == "4/0"
+
+def testAWGXXX():
+    with pytest.raises(ValueError):
+        wire.AWGSpecificationToNumber("xxx")
+
+
+#
 def _checkSolidWireDiameter(awg, expected_value, atol=0.1e-3 * pq.inch):
     diameter = wire.SolidWireDiameter(awg)
     return isclose(diameter, expected_value, atol=atol)
@@ -78,17 +115,14 @@ def testSolidWireDiameter_0():
 def testSolidWireDiameter_21():
     assert _checkSolidWireDiameter(21, 0.02846 * pq.inch)
 
+
 # AWG 36 is by definition.
 def testSolidWireDiameter_36():
     assert _checkSolidWireDiameter(36, 0.0050 * pq.inch)
 
+
 def testSolidWireDiameter_40():
     assert _checkSolidWireDiameter(40, 0.00314 * pq.inch)
-
-
-def testSolidWireDiameter_xxx():
-    with pytest.raises(ValueError):
-        wire.SolidWireDiameter("xxx")
 
 
 def _checkSolidWireArea(awg, expected_value, atol=4.0 * pq.cmil):
@@ -113,8 +147,6 @@ def testSolidWireArea_40():
 
 
 # Resistance per unit length from https://en.wikipedia.org/wiki/American_wire_gauge
-
-
 def _checkSolidWireResistancePerUnitLength(
     awg, expected_value, atol=100e-6 * pq.ohm / pq.m
 ):
