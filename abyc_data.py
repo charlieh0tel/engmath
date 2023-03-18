@@ -73,9 +73,7 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,4,2,2,1,0,2/0,3/0,4/0
 """
 
-TABLE_IX_12V = pd.read_csv(io.StringIO(_TABLE_IX_12V_CSV)).set_index(
-    "current_A"
-)
+TABLE_IX_12V = pd.read_csv(io.StringIO(_TABLE_IX_12V_CSV)).set_index("current_A")
 TABLE_IX_12V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_12V)
 
 #
@@ -97,9 +95,7 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,6,6,4,4,2,2,1,0,2/0,2/0,3/0,3/0,4/0,4/0,4/0
 """
 
-TABLE_IX_24V = pd.read_csv(io.StringIO(_TABLE_IX_24V_CSV)).set_index(
-    "current_A"
-)
+TABLE_IX_24V = pd.read_csv(io.StringIO(_TABLE_IX_24V_CSV)).set_index("current_A")
 TABLE_IX_24V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_24V)
 
 
@@ -122,9 +118,7 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,8,6,6,4,4,2,2,1,0,0,2/0,2/0,2/0,3/0,3/0,3/0,4/0,4/0,4/0
 """
 
-TABLE_IX_32V = pd.read_csv(io.StringIO(_TABLE_IX_32V_CSV)).set_index(
-    "current_A"
-)
+TABLE_IX_32V = pd.read_csv(io.StringIO(_TABLE_IX_32V_CSV)).set_index("current_A")
 TABLE_IX_32V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_32V)
 
 ########################################################################
@@ -152,9 +146,7 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,10,8,6,6,4,4,2,2,1,1,0,0,0,2/0,2/0,2/0,3/0,3/0,3/0
 """
 
-TABLE_X_12V = pd.read_csv(io.StringIO(_TABLE_X_12V_CSV)).set_index(
-    "current_A"
-)
+TABLE_X_12V = pd.read_csv(io.StringIO(_TABLE_X_12V_CSV)).set_index("current_A")
 TABLE_X_12V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_X_12V)
 
 
@@ -177,9 +169,7 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,12,10,10,8,8,6,6,4,4,4,2,2,2,2,2,1,1,1,1
 """
 
-TABLE_X_24V = pd.read_csv(io.StringIO(_TABLE_X_24V_CSV)).set_index(
-    "current_A"
-)
+TABLE_X_24V = pd.read_csv(io.StringIO(_TABLE_X_24V_CSV)).set_index("current_A")
 TABLE_X_24V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_X_24V)
 
 
@@ -202,7 +192,5 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,14,12,10,10,8,8,6,6,6,4,4,4,4,2,2,2,2,2,2
 """
 
-TABLE_X_32V = pd.read_csv(io.StringIO(_TABLE_X_32V_CSV)).set_index(
-    "current_A"
-)
+TABLE_X_32V = pd.read_csv(io.StringIO(_TABLE_X_32V_CSV)).set_index("current_A")
 TABLE_X_32V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_X_32V)
