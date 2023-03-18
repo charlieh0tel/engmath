@@ -78,7 +78,6 @@ def GetAWGForCircuit(voltage, current, full_circuit_length, drop_pc=3):
     current_vs_awg = table[column_name]
     awg_vs_current = pd.Series(current_vs_awg.index, current_vs_awg.values)
     acceptable_awgs = awg_vs_current[awg_vs_current >= mag_current_A]
-    print(f"acc={acceptable_awgs}")
     if acceptable_awgs.empty:
         raise ValueError("No acceptable wire guage for full circuit.")
     return wire.CanonicalizeAWG(acceptable_awgs.keys()[0])
