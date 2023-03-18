@@ -55,7 +55,7 @@ def SolidWireResistancePerUnitLength(awg, p=resistivity.p_Cu):
     return (p / area).rescale(pq.ohm / pq.m)
 
 
-def AmericanBoatAndYachtCouncilWireGaugeUpToThreeConductorBundle(
+def ABYCWireGaugeUpToThreeConductorBundle(
     current, insulation_temp_rating_C, engine_room=False
 ):
     awg_vs_current = abyc.GetAWGVsCurrentForInsulationTempRating(
