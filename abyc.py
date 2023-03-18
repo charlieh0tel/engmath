@@ -89,5 +89,4 @@ def GetWireGaugeForDCCircuit(voltage, current, full_circuit_length,
                      engine_room=False):
     awg_for_drop = GetWireGaugeForDCDrop(voltage, current, full_circuit_length, drop_pc=drop_pc)
     awg_for_bundle = GetWireGaugeUpToThreeConductorBundle(current, insulation_temp_rating, engine_room=engine_room)
-    print(f"drop: {awg_for_drop}, bundle: {awg_for_bundle}")
     return min(awg_for_drop, awg_for_bundle)
