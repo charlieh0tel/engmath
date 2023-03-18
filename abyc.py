@@ -10,8 +10,8 @@ from . import abyc_data
 from . import wire
 
 #
-# Table 6.
-
+# TABLE VI – B - AC & DC CIRCUITS – ALLOWABLE AMPERAGE OF CONDUCTORS WHEN UP TO
+# THREE CURRENT CARRYING CONDUCTORS ARE BUNDLED, SHEATHED OR IN CONDUIT
 def GetWireGaugeUpToThreeConductorBundle(
         current, insulation_temp_rating_C, engine_room=False):
     mag_current_A = current.rescale("A").magnitude
@@ -31,27 +31,38 @@ def GetWireGaugeUpToThreeConductorBundle(
 
 
 #
-# Table 9.
+# TABLE IX – CONDUCTORS SIZED FOR 3 PERCENT DROP IN VOLTAGE
+# Length of Conductor from Source of Current to Device and Back to Source
 
-_TABLE9 = {
-    (12, 3): abyc_data.TABLE_IX_12V_3PC,
-    (24, 3): abyc_data.TABLE_IX_24V_3PC,
-    (32, 3): abyc_data.TABLE_IX_32V_3PC,
-    (12, 10): abyc_data.TABLE_IX_12V_10PC,
-    (24, 10): abyc_data.TABLE_IX_24V_10PC,
-    (32, 10): abyc_data.TABLE_IX_32V_10PC
+_TABLE_IX = {
+    12: abyc_data.TABLE_IX_12V,
+    24: abyc_data.TABLE_IX_24V,
+    32: abyc_data.TABLE_IX_32V,
 }
-_TABLE9_VOLTAGES=sorted(set([v for (v, pc) in _TABLE9.keys()]))
-_TABLE9_PC_DROPS=sorted(set([pc for (v, pc) in _TABLE9.keys()]))
-# All of the tables are the same.
-_TABLE9_KNOWN_LENGTHS_FT=abyc_data.TABLE_IX_12V_3PC_KNOWN_LENGTHS_FT
+_TABLE_IX_VOLTAGES=sorted(_TABLE_IX.keys())
+_TABLE_IX_KNOWN_LENGTHS_FT=abyc_data.TABLE_IX_12V_KNOWN_LENGTHS_FT
+
+
+#
+# TABLE X – CONDUCTORS SIZED FOR 3 PERCENT DROP IN VOLTAGE
+# Length of Conductor from Source of Current to Device and Back to Source
+
+_TABLE_X = {
+    12: abyc_data.TABLE_X_12V,
+    24: abyc_data.TABLE_X_24V,
+    32: abyc_data.TABLE_X_32V,
+}
+_TABLE_X_VOLTAGES=sorted(_TABLE_X.keys())
+_TABLE_X_KNOWN_LENGTHS_FT=abyc_data.TABLE_X_12V_KNOWN_LENGTHS_FT
+
 
 """
-def GetAWGForLength(voltage_V, full_circuit_length_ft):, 
+def GetAWGForLength(voltage_V, full_circuit_length_ft, ):, 
     if full_circuit_length_ft not in TABLE_IX_12V_3PC_KNOWN_LENGTHS:
         raise KeyError(
             f"Unknown length; known lengths: {TABLE_IX_12V_3PC_KNOWN_LENGTHS_FT} FT"
         )
     column_name = "awg_%dft" % full_circuit_length_ft
     current_vs_awg
+
 """

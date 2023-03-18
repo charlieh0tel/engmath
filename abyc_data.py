@@ -48,6 +48,7 @@ awg,current_60C,current_60C_engroom,current_75C,current_75C_engroom,current_80C,
 TABLE_VI_B = pd.read_csv(io.StringIO(_TABLE_VI_B_CSV)).set_index("awg")
 TABLE_VI_B_KNOWN_TEMPS_C = _ColumnSortedValues(TABLE_VI_B)
 
+########################################################################
 
 #
 # TABLE IX – CONDUCTORS SIZED FOR 3 PERCENT DROP IN VOLTAGE
@@ -55,7 +56,7 @@ TABLE_VI_B_KNOWN_TEMPS_C = _ColumnSortedValues(TABLE_VI_B)
 
 #
 # 12 Volts - 3% Drop Wire Sizes (gauge) - Based on Minimum CM Area
-_TABLE_IX_12V_3PC_CSV = """
+_TABLE_IX_12V_CSV = """
 current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60ft,awg_70ft,awg_80ft,awg_90ft,awg_100ft,awg_110ft,awg_120ft,awg_130ft,awg_140ft,awg_150ft,awg_160ft,awg_170
 5,18,16,14,12,12,10,10,10,8,8,8,6,6,6,6,6,6,6,6
 10,14,12,10,10,10,8,6,6,6,6,4,4,4,4,2,2,2,2,2
@@ -72,14 +73,14 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,4,2,2,1,0,2/0,3/0,4/0
 """
 
-TABLE_IX_12V_3PC = pd.read_csv(io.StringIO(_TABLE_IX_12V_3PC_CSV)).set_index(
+TABLE_IX_12V = pd.read_csv(io.StringIO(_TABLE_IX_12V_CSV)).set_index(
     "current_A"
 )
-TABLE_IX_12V_3PC_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_12V_3PC)
+TABLE_IX_12V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_12V)
 
 #
 # 24 Volts - 3% Drop Wire Sizes (gauge) - Based on Minimum CM Area
-_TABLE_IX_24V_3PC_CSV = """
+_TABLE_IX_24V_CSV = """
 current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60ft,awg_70ft,awg_80ft,awg_90ft,awg_100ft,awg_110ft,awg_120ft,awg_130ft,awg_140ft,awg_150ft,awg_160ft,awg_170
 5,18,18,18,16,16,14,12,12,12,10,10,10,10,10,8,8,8,8,8
 10,18,16,14,12,12,10,10,10,8,8,8,6,6,6,6,6,6,6,6
@@ -96,15 +97,15 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,6,6,4,4,2,2,1,0,2/0,2/0,3/0,3/0,4/0,4/0,4/0
 """
 
-TABLE_IX_24V_3PC = pd.read_csv(io.StringIO(_TABLE_IX_24V_3PC_CSV)).set_index(
+TABLE_IX_24V = pd.read_csv(io.StringIO(_TABLE_IX_24V_CSV)).set_index(
     "current_A"
 )
-TABLE_IX_24V_3PC_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_24V_3PC)
+TABLE_IX_24V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_24V)
 
 
 #
 # 32 Volts - 3% Drop Wire Sizes (gauge) - Based on Minimum CM Area
-_TABLE_IX_32V_3PC_CSV = """
+_TABLE_IX_32V_CSV = """
 current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60ft,awg_70ft,awg_80ft,awg_90ft,awg_100ft,awg_110ft,awg_120ft,awg_130ft,awg_140ft,awg_150ft,awg_160ft,awg_170
 5,18,18,18,18,16,16,14,14,12,12,12,12,10,10,10,10,10,10,8
 10,18,16,16,14,14,12,12,10,10,10,8,8,8,8,8,6,6,6,6
@@ -121,15 +122,20 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,8,6,6,4,4,2,2,1,0,0,2/0,2/0,2/0,3/0,3/0,3/0,4/0,4/0,4/0
 """
 
-TABLE_IX_32V_3PC = pd.read_csv(io.StringIO(_TABLE_IX_32V_3PC_CSV)).set_index(
+TABLE_IX_32V = pd.read_csv(io.StringIO(_TABLE_IX_32V_CSV)).set_index(
     "current_A"
 )
-TABLE_IX_32V_3PC_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_32V_3PC)
+TABLE_IX_32V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_32V)
 
+########################################################################
+
+#
+# TABLE X - CONDUCTORS SIZES FOR 10 PERCENT VOLTAGE DROP
+# Length of Conductor from Source of Current to Device and Back to Source
 
 #
 # 12 Volts - 10% Drop Wire Sizes (gauge) - Based on Minimum CM Area
-_TABLE_IX_12V_10PC_CSV = """
+_TABLE_X_12V_CSV = """
 current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60ft,awg_70ft,awg_80ft,awg_90ft,awg_100ft,awg_110ft,awg_120ft,awg_130ft,awg_140ft,awg_150ft,awg_160ft,awg_170
 5,18,18,18,18,18,16,16,14,14,14,12,12,12,12,12,10,10,10,10
 10,18,18,16,16,14,14,12,12,10,10,10,10,8,8,8,8,8,8,6
@@ -146,15 +152,15 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,10,8,6,6,4,4,2,2,1,1,0,0,0,2/0,2/0,2/0,3/0,3/0,3/0
 """
 
-TABLE_IX_12V_10PC = pd.read_csv(io.StringIO(_TABLE_IX_12V_10PC_CSV)).set_index(
+TABLE_X_12V = pd.read_csv(io.StringIO(_TABLE_X_12V_CSV)).set_index(
     "current_A"
 )
-TABLE_IX_12V_10PC_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_12V_10PC)
+TABLE_X_12V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_X_12V)
 
 
 #
 # 24 Volts - 10% Drop Wire Sizes (gauge) - Based on Minimum CM Area
-_TABLE_IX_24V_10PC_CSV = """
+_TABLE_X_24V_CSV = """
 current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60ft,awg_70ft,awg_80ft,awg_90ft,awg_100ft,awg_110ft,awg_120ft,awg_130ft,awg_140ft,awg_150ft,awg_160ft,awg_170
 5,18,18,18,18,18,18,18,18,16,16,16,16,14,14,14,14,14,14,12
 0,18,18,18,18,18,16,16,14,14,14,12,12,12,12,12,10,10,10,10
@@ -171,15 +177,15 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,12,10,10,8,8,6,6,4,4,4,2,2,2,2,2,1,1,1,1
 """
 
-TABLE_IX_24V_10PC = pd.read_csv(io.StringIO(_TABLE_IX_24V_10PC_CSV)).set_index(
+TABLE_X_24V = pd.read_csv(io.StringIO(_TABLE_X_24V_CSV)).set_index(
     "current_A"
 )
-TABLE_IX_24V_10PC_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_24V_10PC)
+TABLE_X_24V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_X_24V)
 
 
 #
 # 32 Volts - 10% Drop Wire Sizes (gauge) - Based on Minimum CM Area
-_TABLE_IX_32V_10PC_CSV = """
+_TABLE_X_32V_CSV = """
 current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60ft,awg_70ft,awg_80ft,awg_90ft,awg_100ft,awg_110ft,awg_120ft,awg_130ft,awg_140ft,awg_150ft,awg_160ft,awg_170
 5,18,18,18,18,18,18,18,18,18,18,18,16,16,16,16,14,14,14,14
 10,18,18,18,18,18,18,16,16,14,14,14,14,14,12,12,12,12,12,12
@@ -196,7 +202,7 @@ current_A,awg_10ft,awg_15ft,awg_20ft,awg_25ft,awg_30ft,awg_40ft,awg_50ft,awg_60f
 100,14,12,10,10,8,8,6,6,6,4,4,4,4,2,2,2,2,2,2
 """
 
-TABLE_IX_32V_10PC = pd.read_csv(io.StringIO(_TABLE_IX_32V_10PC_CSV)).set_index(
+TABLE_X_32V = pd.read_csv(io.StringIO(_TABLE_X_32V_CSV)).set_index(
     "current_A"
 )
-TABLE_IX_32V_10PC_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_IX_32V_10PC)
+TABLE_X_32V_KNOWN_LENGTHS_FT = _ColumnSortedValues(TABLE_X_32V)
