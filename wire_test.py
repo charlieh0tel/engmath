@@ -52,6 +52,7 @@ def testAWGFourZeroes():
         assert wire.AWGSpecificationToNumber(awg) == -3
         assert wire.CanonicalizeAWG(awg) == "4/0"
 
+
 def testAWGXXX():
     with pytest.raises(ValueError):
         wire.AWGSpecificationToNumber("xxx")
