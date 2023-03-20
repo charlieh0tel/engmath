@@ -12,6 +12,9 @@ import quantities as pq
 from . import abyc
 from . import resistivity
 
+# References:
+# * https://en.wikipedia.org/wiki/American_wire_gauge
+# * Electrical Engineering, Vol 1. Direct Currents, Dawes, 3d edition, 1937
 
 def AWGSpecificationToNumber(awg):
     if awg == "0000" or awg == "4/0":
