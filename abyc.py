@@ -12,6 +12,7 @@ import pandas as pd
 from . import abyc_data
 from . import wire
 
+
 #
 # TABLE VI – B - AC & DC CIRCUITS – ALLOWABLE AMPERAGE OF CONDUCTORS WHEN UP TO
 # THREE CURRENT CARRYING CONDUCTORS ARE BUNDLED, SHEATHED OR IN CONDUIT
@@ -54,9 +55,9 @@ _TABLE_IX_X_DROP_PCS = sorted(set((drop_pc for (v, drop_pc) in _TABLE_IX_X.keys(
 _TABLE_IX_X_KNOWN_LENGTHS_FT = abyc_data.TABLE_IX_12V_KNOWN_LENGTHS_FT
 
 
-def _list_max(l, minvalue):
-    l = sorted(l)
-    for v in l:
+def _list_max(values, minvalue):
+    values = sorted(values)
+    for v in values:
         if v >= minvalue:
             return v
     raise ValueError("No max value")
@@ -83,10 +84,18 @@ def GetWireGaugeForDCDrop(voltage, current, full_circuit_length, drop_pc=3):
     return wire.CanonicalizeAWG(acceptable_awgs.keys()[0])
 
 
-
-def GetWireGaugeForDCCircuit(voltage, current, full_circuit_length,
-                     insulation_temp_rating, drop_pc=3,
-                     engine_room=False):
-    awg_for_drop = GetWireGaugeForDCDrop(voltage, current, full_circuit_length, drop_pc=drop_pc)
-    awg_for_bundle = GetWireGaugeUpToThreeConductorBundle(current, insulation_temp_rating, engine_room=engine_room)
+def GetWireGaugeForDCCircuit(
+    voltage,
+    current,
+    full_circuit_length,
+    insulation_temp_rating,
+    drop_pc=3,
+    engine_room=False,
+):
+    awg_for_drop = GetWireGaugeForDCDrop(
+        voltage, current, full_circuit_length, drop_pc=drop_pc
+    )
+    awg_for_bundle = GetWireGaugeUpToThreeConductorBundle(
+        current, insulation_temp_rating, engine_room=engine_room
+    )
     return min(awg_for_drop, awg_for_bundle)

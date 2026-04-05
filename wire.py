@@ -16,6 +16,7 @@ from . import resistivity
 # * https://en.wikipedia.org/wiki/American_wire_gauge
 # * Electrical Engineering, Vol 1. Direct Currents, Dawes, 3d edition, 1937
 
+
 def AWGSpecificationToNumber(awg):
     if awg == "0000" or awg == "4/0":
         return -3
@@ -49,7 +50,7 @@ def SolidWireDiameter(awg):
 def SolidWireCrossSectionalArea(awg):
     """The cross-sectional area of a solid wire of the specified AWG."""
     radius = SolidWireDiameter(awg) / 2.0
-    return math.pi * radius ** 2
+    return math.pi * radius**2
 
 
 def SolidWireResistancePerUnitLength(awg, p=resistivity.p_Cu):

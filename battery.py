@@ -6,7 +6,6 @@
 
 """Batteries."""
 
-
 import dataclasses
 import quantities as pq
 
