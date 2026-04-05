@@ -10,5 +10,4 @@ jobs:
   ci:
     uses: charlieh0tel/deb-workflows/.github/workflows/python-ci.yml@main
     with:
-      requirements-file: ""
       test-command: "pytest --showlocals -rA"
