@@ -1,14 +1,20 @@
-PYTEST=pytest-3
-PYLINT=pylint
-PYFORMAT=black
+UV=uv
 
 all:
 
+sync:
+	$(UV) sync
+
 test:
-	$(PYTEST) --showlocals -rA
+	$(UV) run pytest --showlocals -rA
 
 lint:
-	$(PYLINT) --reports=n --persistent=n --score=n *.py
+	$(UV) run ruff check .
 
 format:
-	$(PYFORMAT) *.py
+	$(UV) run ruff format .
+
+format-check:
+	$(UV) run ruff format --check .
+
+.PHONY: all sync test lint format format-check
