@@ -7,8 +7,8 @@
 
 # pylint: disable=missing-function-docstring
 
-import quantities as pq
 import pytest
+import quantities as pq
 
 from . import battery
 from .test_utils import isclose

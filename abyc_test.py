@@ -9,8 +9,8 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=invalid-name
 
-import quantities as pq
 import pytest
+import quantities as pq
 
 from . import abyc
 

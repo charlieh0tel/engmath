@@ -6,11 +6,10 @@
 
 """ABCY E-11."""
 
-import quantities as pq
 import pandas as pd
+import quantities as pq
 
-from . import abyc_data
-from . import wire
+from . import abyc_data, wire
 
 
 #
@@ -25,9 +24,8 @@ def GetWireGaugeUpToThreeConductorBundle(
         raise KeyError(
             f"Unknown insulation temperature rating {insulation_temp_rating}; known ratings: {abyc_data.TABLE_VI_B_KNOWN_TEMPS_C} C"
         )
-    column_name = "current_%dC" % mag_insulation_temp_rating_C + (
-        "_engroom" if engine_room else ""
-    )
+    engine_room_suffix = "_engroom" if engine_room else ""
+    column_name = f"current_{mag_insulation_temp_rating_C}C{engine_room_suffix}"
     awg_vs_current = abyc_data.TABLE_VI_B[column_name]
     acceptable_awgs = awg_vs_current[awg_vs_current >= mag_current_A]
     if acceptable_awgs.empty:
@@ -48,9 +46,8 @@ _TABLE_IX_X = {
     (24, 10): abyc_data.TABLE_X_24V,
     (32, 10): abyc_data.TABLE_X_32V,
 }
-#
-_TABLE_IX_X_VOLTAGES = sorted(set((v for (v, drop_pc) in _TABLE_IX_X.keys())))
-_TABLE_IX_X_DROP_PCS = sorted(set((drop_pc for (v, drop_pc) in _TABLE_IX_X.keys())))
+_TABLE_IX_X_VOLTAGES = sorted({v for (v, drop_pc) in _TABLE_IX_X})
+_TABLE_IX_X_DROP_PCS = sorted({drop_pc for (v, drop_pc) in _TABLE_IX_X})
 # All the same
 _TABLE_IX_X_KNOWN_LENGTHS_FT = abyc_data.TABLE_IX_12V_KNOWN_LENGTHS_FT
 
@@ -75,7 +72,7 @@ def GetWireGaugeForDCDrop(voltage, current, full_circuit_length, drop_pc=3):
     length_ft = _list_max(
         _TABLE_IX_X_KNOWN_LENGTHS_FT, full_circuit_length.rescale(pq.ft).magnitude
     )
-    column_name = "awg_%dft" % length_ft
+    column_name = f"awg_{length_ft}ft"
     current_vs_awg = table[column_name]
     awg_vs_current = pd.Series(current_vs_awg.index, current_vs_awg.values)
     acceptable_awgs = awg_vs_current[awg_vs_current >= mag_current_A]

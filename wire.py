@@ -7,10 +7,10 @@
 """Wire specified by AWG."""
 
 import math
+
 import quantities as pq
 
-from . import abyc
-from . import resistivity
+from . import abyc, resistivity
 
 # References:
 # * https://en.wikipedia.org/wiki/American_wire_gauge
@@ -35,7 +35,7 @@ def AWGSpecificationToNumber(awg):
 def CanonicalizeAWG(awg):
     awg = AWGSpecificationToNumber(awg)
     if awg < 0:
-        return "%d/0" % (-awg + 1)
+        return f"{-awg + 1}/0"
     else:
         return awg
 

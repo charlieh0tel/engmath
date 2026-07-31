@@ -9,8 +9,8 @@
 # pylint: disable=missing-function-docstring
 # pylint: disable=invalid-name
 
-import quantities as pq
 import pytest
+import quantities as pq
 
 from . import wire
 from .test_utils import isclose
@@ -23,7 +23,7 @@ from .test_utils import isclose
 
 
 def testAWGInts():
-    for awg in range(0, 40 + 1):
+    for awg in range(40 + 1):
         assert wire.CanonicalizeAWG(awg) == awg
         assert wire.AWGSpecificationToNumber(awg) == awg
         assert wire.AWGSpecificationToNumber(str(awg)) == awg
@@ -58,7 +58,6 @@ def testAWGXXX():
         wire.AWGSpecificationToNumber("xxx")
 
 
-#
 def _checkSolidWireDiameter(awg, expected_value, atol=0.1e-3 * pq.inch):
     diameter = wire.SolidWireDiameter(awg)
     return isclose(diameter, expected_value, atol=atol)

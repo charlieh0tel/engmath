@@ -18,12 +18,6 @@ dev = [
     "ruff",
 ]
 
-[tool.ruff.lint]
-# ruff 0.16 widened its default rule set. Ruff is pinned in uv.lock, so state
-# the rules explicitly instead of inheriting whatever the next release defaults
-# to: this is ruff's pre-0.16 default selection, which this tree is clean under.
-select = ["E4", "E7", "E9", "F"]
-
 [tool.uv]
 # The modules live at the repo root and are imported as a package via the
 # parent directory, so there is nothing for uv to build or install.

@@ -10,7 +10,6 @@ import quantities as pq
 
 from . import heat_transfer
 
-
 TOUCH_CONTINUOUS_TEMP_LIMIT = 43.0 * pq.C
 
 
