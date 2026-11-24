@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 #
 
-"""ABCY E-11 Tables."""
+"""ABYC E-11 Tables."""
 
 import io
 import re

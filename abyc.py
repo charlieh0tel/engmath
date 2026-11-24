@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 #
 
-"""ABCY E-11."""
+"""ABYC E-11."""
 
 import pandas as pd
 import quantities as pq
